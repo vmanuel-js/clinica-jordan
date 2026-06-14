@@ -1,4 +1,5 @@
 ﻿using ClinicaJordan.Web.Data;
+using ClinicaJordan.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicaJordan.Web.Controllers
@@ -10,6 +11,18 @@ namespace ClinicaJordan.Web.Controllers
         public PacienteController(PacienteRepository pacienteRepository)
         {
             _pacienteRepository = pacienteRepository;
+        }
+
+        public IActionResult Crear()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Crear(Paciente paciente)
+        {
+            _pacienteRepository.Insertar(paciente);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Index()

@@ -1,6 +1,7 @@
 ﻿using ClinicaJordan.Web.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Net;
 
 namespace ClinicaJordan.Web.Data
 {
@@ -44,6 +45,26 @@ namespace ClinicaJordan.Web.Data
             }
 
             return lista;
+        }
+
+        public void Insertar(Paciente paciente)
+        {
+            using var cnx = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("SP_InsertarPaciente", cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@dni", paciente.Dni);
+            cmd.Parameters.AddWithValue("@nombres", paciente.Nombres);
+            cmd.Parameters.AddWithValue("@apellidos", paciente.Apellidos);
+            cmd.Parameters.AddWithValue("@correo", paciente.Correo);
+            cmd.Parameters.AddWithValue("@telefono", paciente.Telefono);
+            cmd.Parameters.AddWithValue("@fecha_nacimiento", paciente.FechaNacimiento.ToDateTime(TimeOnly.MinValue));
+            cmd.Parameters.AddWithValue("@peso", paciente.Peso);
+            cmd.Parameters.AddWithValue("@altura", paciente.Altura);
+            cmd.Parameters.AddWithValue("@sexo", paciente.Sexo);
+
+            cnx.Open();
+            cmd.ExecuteNonQuery();
         }
     }
 }
