@@ -19,7 +19,12 @@
             <th>Correo</th>
             <th>Teléfono</th>
             <th>Fecha de Nacimiento</th>
+            <th>Peso</th>
+            <th>Altura</th>
+            <th>Sexo</th>
             <th>Estado</th>
+            <th>Fecha Registro</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +37,15 @@
                 <td>@paciente.Correo</td>
                 <td>@paciente.Telefono</td>
                 <td>@paciente.FechaNacimiento</td>
+                <td>@paciente.Peso</td>
+                <td>@paciente.Altura</td>
+                <td>@paciente.Sexo</td>
                 <td>@paciente.Estado</td>
+                <td>@paciente.FechaRegistro</td>
+                <td class="d-flex justify-content-around align-items-center">
+                    <a asp-action="Actualizar" asp-route-dni="@paciente.Dni" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Desactivar" asp-route-dni="@paciente.Dni" class="btn btn-sm btn-danger">Desactivar</a>
+                </td>
             </tr>
         }
     </tbody>

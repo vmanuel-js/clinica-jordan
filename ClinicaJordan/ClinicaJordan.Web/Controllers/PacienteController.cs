@@ -25,6 +25,19 @@ namespace ClinicaJordan.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Actualizar(string dni)
+        {
+            var paciente = _pacienteRepository.ObtenerPorDni(dni);
+            return View(paciente);
+        }
+
+        [HttpPost]
+        public IActionResult Actualizar(Paciente paciente)
+        {
+            _pacienteRepository.Actualizar(paciente);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
             var pacientes = _pacienteRepository.ObtenerTodos();
