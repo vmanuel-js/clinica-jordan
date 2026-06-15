@@ -116,5 +116,26 @@ namespace ClinicaJordan.Web.Data
             cnx.Open();
             cmd.ExecuteNonQuery();
         }
+
+        public string Desactivar(string dni)
+        {
+            var paciente = ObtenerPorDni(dni);
+
+            if (paciente == null)
+                return "El paciente no existe.";
+
+            if (paciente.Estado == 'I')
+                return "El paciente ya se encuentra inactivo";
+
+            using var cnx = new SqlConnection(_connectionString);
+            using var cmd = new SqlCommand("SP_DesactivarPaciente", cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@dni", dni);
+
+            cnx.Open();
+            cmd.ExecuteNonQuery();
+
+            return "OK";
+        }
     }
 }

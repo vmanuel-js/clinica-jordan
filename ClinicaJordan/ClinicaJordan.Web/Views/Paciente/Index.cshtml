@@ -4,49 +4,63 @@
 
 @model List<ClinicaJordan.Web.Models.Paciente>
 
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (TempData["Exito"] != null)
+{
+    <div class="alert alert-success">@TempData["Exito"]</div>
+}
+
 @{
     ViewData["Title"] = "Pacientes";
 }
 
 <h2>Lista de Pacientes</h2>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>DNI</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Correo</th>
-            <th>Teléfono</th>
-            <th>Fecha de Nacimiento</th>
-            <th>Peso</th>
-            <th>Altura</th>
-            <th>Sexo</th>
-            <th>Estado</th>
-            <th>Fecha Registro</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var paciente in Model)
-        {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
             <tr>
-                <td>@paciente.Dni</td>
-                <td>@paciente.Nombres</td>
-                <td>@paciente.Apellidos</td>
-                <td>@paciente.Correo</td>
-                <td>@paciente.Telefono</td>
-                <td>@paciente.FechaNacimiento</td>
-                <td>@paciente.Peso</td>
-                <td>@paciente.Altura</td>
-                <td>@paciente.Sexo</td>
-                <td>@paciente.Estado</td>
-                <td>@paciente.FechaRegistro</td>
-                <td class="d-flex justify-content-around align-items-center">
-                    <a asp-action="Actualizar" asp-route-dni="@paciente.Dni" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-action="Desactivar" asp-route-dni="@paciente.Dni" class="btn btn-sm btn-danger">Desactivar</a>
-                </td>
+                <th>DNI</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Peso</th>
+                <th>Altura</th>
+                <th>Sexo</th>
+                <th>Estado</th>
+                <th>Fecha Registro</th>
+                <th class="text-nowrap">Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var paciente in Model)
+            {
+                <tr>
+                    <td>@paciente.Dni</td>
+                    <td>@paciente.Nombres</td>
+                    <td>@paciente.Apellidos</td>
+                    <td>@paciente.Correo</td>
+                    <td>@paciente.Telefono</td>
+                    <td>@paciente.FechaNacimiento</td>
+                    <td>@paciente.Peso</td>
+                    <td>@paciente.Altura</td>
+                    <td>@paciente.Sexo</td>
+                    <td>@paciente.Estado</td>
+                    <td>@paciente.FechaRegistro</td>
+                    <td class="text-nowrap">
+                        <div class="btn-group btn-group-sm">
+                            <a asp-action="Actualizar" asp-route-dni="@paciente.Dni" class="btn btn-warning">Editar</a>
+                            <a asp-action="Desactivar" asp-route-dni="@paciente.Dni" class="btn btn-danger" onclick="return confirm('¿Desea desactivar al cliente?')">Desactivar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -38,6 +38,18 @@ namespace ClinicaJordan.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Desactivar (string dni)
+        {
+            var resultado = _pacienteRepository.Desactivar(dni);
+
+            if (resultado != "OK")
+                TempData["Error"] = resultado;
+            else
+                TempData["Exito"] = "Paciente desactivado correctamente";
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
             var pacientes = _pacienteRepository.ObtenerTodos();

@@ -13,15 +13,18 @@
 <form asp-action="Actualizar" method="post">
     <div class="mb-3">
         <label asp-for="Dni" class="form-label">DNI</label>
-        <input asp-for="Dni" class="form-control" />
+        <input asp-for="Dni" class="form-control" disabled/>
+        <input type="hidden" asp-for="Dni" />
     </div>
     <div class="mb-3">
         <label asp-for="Nombres" class="form-label">Nombres</label>
-        <input asp-for="Nombres" class="form-control"/>
+        <input asp-for="Nombres" class="form-control" disabled/>
+        <input type="hidden" asp-for="Nombres" />
     </div>
     <div class="mb-3">
         <label asp-for="Apellidos" class="form-label">Apellidos</label>
-        <input asp-for="Apellidos" class="form-control" />
+        <input asp-for="Apellidos" class="form-control" disabled/>
+        <input type="hidden" asp-for="Apellidos" />
     </div>
     <div class="mb-3">
         <label asp-for="Correo" class="form-label">Correo</label>
