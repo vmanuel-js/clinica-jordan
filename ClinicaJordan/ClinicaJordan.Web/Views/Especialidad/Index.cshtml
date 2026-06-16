@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<ClinicaJordan.Web.Models.Especialidad>
+
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (TempData["Exito"] != null)
+{
+    <div class="alert alert-success">@TempData["Exito"]</div>
+}
+
+@{
+    ViewData["Title"] = "Especialidad";
+}
+
+<h2>Lista de Especialidades</h2>
+
+<div class="d-flex flex-row align-items-center gap-4">
+    <span>Crear nueva especialidad:</span>
+    <a asp-action="Insertar" class="btn btn-sm btn-info">Insertar</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var especialidad in Model)
+            {
+                <tr>
+                    <td>@especialidad.IdEspecialidad</td>
+                    <td>@especialidad.Nombre</td>
+                    <td>@especialidad.Descripcion</td>
+                    <td>@especialidad.Estado</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a asp-action="Actualizar" asp-route-id="@especialidad.IdEspecialidad" class="btn btn-warning">Actualizar</a>
+                            <a asp-action="Desactivar" asp-route-id="@especialidad.IdEspecialidad" class="btn btn-danger" onclick="return confirm('¿Desea desactivar esta especialidad?')">Desactivar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

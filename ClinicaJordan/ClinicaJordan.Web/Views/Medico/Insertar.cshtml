@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model ClinicaJordan.Web.Models.Medico
+
+@{
+    ViewData["Title"] = "Nuevo Médico";
+}
+
+<h2>Nuevo Médico</h2>
+
+<form asp-action="Insertar" method="post">
+    <div class="mb-3">
+        <label asp-for="Dni" class="form-label">Dni</label>
+        <input asp-for="Dni" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Nombres" class="form-label">Nombres</label>
+        <input asp-for="Nombres" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Apellidos" class="form-label">Apellidos</label>
+        <input asp-for="Apellidos" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Correo" class="form-label">Correo</label>
+        <input asp-for="Correo" type="email" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Telefono" class="form-label">Telefono</label>
+        <input asp-for="Telefono" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Turno" class="form-label">Turno</label>
+        <select asp-for="Turno" class="form-select">
+            <option value="M">Mañana</option>
+            <option value="T">Tarde</option>
+            <option value="N">Noche</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Especialidad" class="form-label">Especialidad</label>
+        <select asp-for="Especialidad" class="form-select">
+            <option value="A">Alergología</option>
+            <option value="T">Traumatología</option>
+            <option value="D">Dermatología</option>
+            <option value="N">Neurología</option>
+            <option value="G">Gastroenterología</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <input asp-for="FechaNacimiento" type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+</form>
