@@ -2,18 +2,19 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model ClinicaJordan.Web.Models.Medico
+@model ClinicaJordan.Web.Models.Medico;
 
 @{
-    ViewData["Title"] = "Nuevo Médico";
+    ViewData["Title"] = "Actualizar Médico";
 }
 
-<h2>Nuevo Médico</h2>
-
-<form asp-action="Insertar" method="post">
+<h2>Actualizar Médico</h2>
+<form method="post" asp-action="Actualizar">
+    <input type="hidden" asp-for="IdMedico" />
     <div class="mb-3">
         <label asp-for="Dni" class="form-label">Dni</label>
-        <input asp-for="Dni" class="form-control"/>
+        <input asp-for="Dni" class="form-control" disabled/>
+        <input type="hidden" asp-for="Dni"/>
     </div>
     <div class="mb-3">
         <label asp-for="Nombres" class="form-label">Nombres</label>
@@ -25,7 +26,7 @@
     </div>
     <div class="mb-3">
         <label asp-for="Correo" class="form-label">Correo</label>
-        <input asp-for="Correo" type="email" class="form-control" />
+        <input asp-for="Correo" class="form-control" type="email" />
     </div>
     <div class="mb-3">
         <label asp-for="Telefono" class="form-label">Telefono</label>
@@ -40,9 +41,8 @@
         </select>
     </div>
     <div class="mb-3">
-        <label asp-for="IdEspecialidad" class="form-label">Especialidad</label>
-        <select asp-for="IdEspecialidad" class="form-select"
-            asp-items="ViewBag.Especialidades">
+        <label asp-for="IdEspecialidad" class="form-label">IdEspecialidad</label>
+        <select asp-for="IdEspecialidad" class="form-select" asp-items="ViewBag.Especialidades">
             <option value="">--Seleccione una especialidad--</option>
         </select>
     </div>
@@ -50,6 +50,14 @@
         <label asp-for="FechaNacimiento" class="form-label">Fecha de Nacimiento</label>
         <input asp-for="FechaNacimiento" type="date" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+    <div class="mb-3">
+        <label asp-for="Estado" class="form-label">Estado</label>
+        <select asp-for="Estado" class="form-select">
+            <option value="A">Activo</option>
+            <option value="I">Inactivo</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </form>
+
